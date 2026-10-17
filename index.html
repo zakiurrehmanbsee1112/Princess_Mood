@@ -1,0 +1,762 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Princess Mood Fix 💗</title>
+
+<style>
+:root {
+  --pink: #ff69b4;
+  --rose: #ff9acb;
+  --purple: #a78bfa;
+  --white: #fff7fc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  color: var(--white);
+  background:
+    radial-gradient(circle at 15% 15%, #32173d, transparent 35%),
+    radial-gradient(circle at 90% 80%, #241c50, transparent 35%),
+    #090712;
+  overflow-x: hidden;
+}
+
+.floaties {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.floaty {
+  position: absolute;
+  bottom: -40px;
+  color: #ff8fc8;
+  opacity: .4;
+  animation: rise linear infinite;
+}
+
+@keyframes rise {
+  to {
+    transform: translateY(-110vh) rotate(40deg);
+    opacity: 0;
+  }
+}
+
+.container {
+  position: relative;
+  width: min(650px, 94%);
+  margin: auto;
+  padding: 20px 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+  color: #ffd4eb;
+}
+
+.brand {
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.brand span {
+  font-size: 25px;
+  color: var(--pink);
+}
+
+.page-number {
+  font-size: 12px;
+  padding: 8px 12px;
+  border: 1px solid #ff9acb55;
+  border-radius: 20px;
+}
+
+.progress {
+  height: 5px;
+  background: #ffffff18;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--pink), var(--purple));
+  transition: width .4s;
+}
+
+.card {
+  flex: 1;
+  min-height: 440px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 30px;
+  border: 1px solid #ff9acb40;
+  border-radius: 25px;
+  background: linear-gradient(145deg, #1d132bec, #0d0b19f5);
+  box-shadow: 0 20px 60px #0008;
+  animation: appear .4s ease;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.center {
+  text-align: center;
+  align-items: center;
+}
+
+.eyebrow {
+  color: var(--rose);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+h1, h2 {
+  font-family: Georgia, serif;
+  font-weight: normal;
+  line-height: 1.2;
+  color: #ffb3da;
+  margin: 0 0 18px;
+}
+
+h1 {
+  font-size: clamp(32px, 7vw, 48px);
+  text-shadow: 0 0 25px #ff69b440;
+}
+
+h2 {
+  font-size: 32px;
+}
+
+p {
+  color: #e4d8e9;
+  line-height: 1.7;
+  margin: 0 0 20px;
+}
+
+.big-heart {
+  font-size: 65px;
+  animation: heartbeat 1.3s infinite;
+  filter: drop-shadow(0 0 15px #ff4d9d);
+}
+
+@keyframes heartbeat {
+  50% { transform: scale(1.12); }
+}
+
+.options {
+  display: grid;
+  gap: 10px;
+  margin: 10px 0 20px;
+}
+
+.option {
+  width: 100%;
+  text-align: left;
+  padding: 14px;
+  color: white;
+  font-size: 15px;
+  background: #ffffff08;
+  border: 1px solid #ffffff22;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.option:hover,
+.option.selected {
+  border-color: var(--pink);
+  background: #ff69b418;
+  transform: translateY(-2px);
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.btn {
+  border: none;
+  border-radius: 30px;
+  padding: 13px 23px;
+  background: linear-gradient(100deg, #ff68b0, #d98aff);
+  color: #230d25;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 7px 24px #ff69b433;
+  transition: .2s;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.1);
+}
+
+.secondary {
+  color: white;
+  background: #ffffff0c;
+  border: 1px solid #ff9acb44;
+  box-shadow: none;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 14px;
+  margin: 10px 0;
+  color: white;
+  background: #090711;
+  border: 1px solid #ffffff30;
+  border-radius: 12px;
+  font-size: 16px;
+  outline: none;
+}
+
+input[type="text"]:focus {
+  border-color: var(--pink);
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--pink);
+  margin: 20px 0;
+}
+
+.meter-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #cdbbd5;
+}
+
+.reveal {
+  padding: 20px;
+  border: 1px solid #ff9acb55;
+  border-radius: 18px;
+  background: #ff69b414;
+  color: #ffe0f0;
+  font-family: Georgia, serif;
+  font-size: 19px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.toast {
+  min-height: 25px;
+  color: #ffb4d9;
+  text-align: center;
+  font-size: 14px;
+  margin-top: 12px;
+}
+
+footer {
+  color: #8f809e;
+  text-align: center;
+  font-size: 12px;
+  padding: 18px 0 5px;
+}
+
+.confetti {
+  position: fixed;
+  top: -30px;
+  z-index: 10;
+  pointer-events: none;
+  animation: fall 2.5s linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: 92%;
+  }
+
+  .card {
+    padding: 23px 18px;
+    min-height: 430px;
+  }
+
+  h2 {
+    font-size: 27px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="floaties" id="floaties"></div>
+
+<div class="container">
+
+<header>
+  <div class="brand">
+    <span>♕</span> PRINCESS FIX
+    <div style="font-size:11px;font-weight:normal">
+      Your smile matters ♡
+    </div>
+  </div>
+  <div class="page-number" id="pageNumber">Royal Mission 💌</div>
+</header>
+
+<div class="progress">
+  <div class="progress-bar" id="progressBar"></div>
+</div>
+
+<main class="card" id="screen" aria-live="polite"></main>
+<div class="toast" id="toast" role="status"></div>
+
+<footer>
+  Made with love, care, and a little magic 💗
+</footer>
+
+</div>
+
+<script>
+const screens = [
+
+{
+  type: "welcome",
+  eyebrow: "A royal announcement",
+  title: "Hey, My Princess Dr.Afifa💗",
+  text: "I heard that your beautiful smile has gone missing. So I created a little mission just for you. There will be questions, surprises, and a tiny bit of magic. Ready, Your Highness?",
+  button: "Let's begin →"
+},
+
+{
+  type: "mood",
+  eyebrow: "Mission 01",
+  title: "What's happening in your mind? 🌙",
+  text: "Tell me what you feel. You don't have to explain anything you're not ready to share.",
+  options: [
+    ["🌧️", "Something happened today"],
+    ["🌀", "I'm overthinking"],
+    ["🥺", "I need extra care"],
+    ["😴", "I'm just exhausted"],
+    ["🤷‍♀️", "I don't even know"]
+  ]
+},
+
+{
+  type: "care",
+  eyebrow: "Mission 02",
+  title: "How should I cheer you up? 💕",
+  text: "Choose your princess treatment.",
+  options: [
+    ["💌", "Sweet words"],
+    ["😂", "Make me laugh"],
+    ["🌷", "A little reassurance"],
+    ["🎁", "A surprise"],
+    ["👑", "EVERYTHING, obviously"]
+  ]
+},
+
+{
+  type: "trick",
+  eyebrow: "Mission 03 · Tricky question",
+  title: "Solve my little riddle 👀",
+  text: "I can be given without being held. I can make a difficult day feel lighter. I mean the most when I'm genuine. What am I?",
+  placeholder: "Type your answer..."
+},
+
+{
+  type: "memory",
+  eyebrow: "Mission 04",
+  title: "Choose our dream moment ✨",
+  text: "Which little scene would make you happiest?",
+  options: [
+    ["🌙", "Late-night talks under the stars"],
+    ["☕", "A cozy day with snacks"],
+    ["🌹", "Flowers and a romantic surprise"],
+    ["🤣", "Laughing over silly things"]
+  ]
+},
+
+{
+  type: "compliment",
+  eyebrow: "Mission 05",
+  title: "Choose a reminder, Princess 💎",
+  text: "You must keep one of these in your heart.",
+  options: [
+    ["🌸", "I deserve kindness"],
+    ["💖", "My feelings matter"],
+    ["🦋", "I can have difficult days"],
+    ["👑", "I am worthy of love"]
+  ]
+},
+
+{
+  type: "meter",
+  eyebrow: "Mission 06",
+  title: "How is your heart feeling? 💗",
+  text: "Slide honestly. There's no right or wrong answer.",
+  button: "Continue →"
+},
+
+{
+  type: "quiz",
+  eyebrow: "Mission 07 · Royal quiz",
+  title: "What do you deserve? 👑",
+  text: "Carefully choose the best answer.",
+  options: [
+    ["A", "To be perfect every day"],
+    ["B", "To hide every difficult feeling"],
+    ["C", "Kindness, rest, respect, and love"],
+    ["D", "To solve everything immediately"]
+  ]
+},
+
+{
+  type: "surprise",
+  eyebrow: "Secret message unlocked",
+  title: "A little note for you 💌",
+  text: "Open your surprise."
+},
+
+{
+  type: "promise",
+  eyebrow: "Mission 09",
+  title: "Pick your royal reward 🎁",
+  text: "What would make this moment a little nicer?",
+  options: [
+    ["🫂", "A virtual hug"],
+    ["🍫", "Chocolate and comfort"],
+    ["🌈", "A fresh start"],
+    ["💗", "A special message"]
+  ]
+},
+
+{
+  type: "final",
+  eyebrow: "Crown restored 👑",
+  title: "To My Precious Princess 💖",
+  text: "You don't have to be cheerful to be loved. You don't have to explain every feeling or fix everything tonight. You're allowed to have difficult days and take your time. I hope this little website reminds you that you matter on your bright days and your cloudy ones, too.",
+  button: "One last surprise →"
+},
+
+{
+  type: "end",
+  eyebrow: "Forever appreciated",
+  title: "Your smile, your pace 🌙",
+  text: "If you smiled even a tiny bit, mission accomplished. And if today is still difficult, that's okay too. You deserve gentleness either way.",
+  button: "Send me some sparkle ✨"
+}
+
+];
+
+let current = 0;
+let selected = {};
+let mood = 50;
+
+const screen = document.getElementById("screen");
+const progressBar = document.getElementById("progressBar");
+const pageNumber = document.getElementById("pageNumber");
+const toast = document.getElementById("toast");
+
+function choose(index) {
+  selected[current] = index;
+
+  document.querySelectorAll(".option").forEach((button, i) => {
+    button.classList.toggle("selected", i === index);
+  });
+
+  toast.textContent = "";
+}
+
+function next() {
+  if (current < screens.length - 1) {
+    current++;
+    render();
+  }
+}
+
+function back() {
+  if (current > 0) {
+    current--;
+    render();
+  }
+}
+
+function go() {
+  const s = screens[current];
+
+  if (s.type === "trick") {
+    const answer = document
+      .getElementById("answer")
+      .value.trim().toLowerCase();
+
+    if (!answer) {
+      toast.textContent = "Give it your best guess first 💗";
+      return;
+    }
+
+    if (!/(love|kindness|care|promise|comfort|hope|hug|smile)/i.test(answer)) {
+      toast.textContent =
+        "Not quite! Hint: it helps someone feel cared for 💞";
+      return;
+    }
+
+    toast.textContent =
+      "Correct! Love, kindness, or care. You're clever! 👑";
+
+    setTimeout(() => {
+      toast.textContent = "";
+      next();
+    }, 1000);
+
+    return;
+  }
+
+  if (
+    ["mood", "care", "memory", "compliment", "quiz", "promise"]
+      .includes(s.type) &&
+    selected[current] === undefined
+  ) {
+    toast.textContent =
+      "Choose one, Princess. Your next surprise is waiting ✨";
+    return;
+  }
+
+  if (s.type === "quiz" && selected[current] !== 2) {
+    toast.textContent =
+      "Tricky question! Choose the answer that lets you be human 💗";
+    return;
+  }
+
+  if (s.type === "meter") {
+    mood = Number(document.getElementById("moodSlider").value);
+    selected[current] = mood;
+  }
+
+  if (s.type === "surprise") {
+    renderSurprise();
+    return;
+  }
+
+  if (s.type === "end") {
+    confetti();
+    toast.textContent = "A little sparkle, just for you ✨";
+    return;
+  }
+
+  next();
+}
+
+function renderSurprise() {
+  screen.innerHTML = `
+    <div class="center">
+      <div class="big-heart">💌</div>
+
+      <div class="eyebrow">Your secret message</div>
+
+      <h2>You are not too much.</h2>
+
+      <p>
+        You're a whole person with feelings, dreams,
+        and days that don't always go to plan.
+        You deserve to be listened to, not rushed;
+        cared for, not judged; and reminded that
+        one difficult moment cannot define your whole story.
+      </p>
+
+      <div class="reveal">
+        If today feels heavy, take it one little step
+        at a time. You don't have to sparkle every second
+        to be precious. ♡
+      </div>
+
+      <div class="actions">
+        <button class="btn" onclick="next()">
+          Keep this in my heart →
+        </button>
+      </div>
+    </div>
+  `;
+
+  confetti();
+}
+
+function render() {
+  const s = screens[current];
+
+  progressBar.style.width =
+    ((current + 1) / screens.length * 100) + "%";
+
+  pageNumber.textContent =
+    `${current + 1} / ${screens.length} · Royal missions`;
+
+  toast.textContent = "";
+
+  const centered = [
+    "welcome", "surprise", "final", "end"
+  ].includes(s.type);
+
+  let html = `
+    <div class="${centered ? "center" : ""}">
+      <div class="eyebrow">${s.eyebrow}</div>
+  `;
+
+  if (s.type === "welcome") {
+    html += `<div class="big-heart">💗</div>`;
+  }
+
+  html += `<h1>${s.title}</h1><p>${s.text}</p>`;
+
+  if (s.options) {
+    html += `<div class="options">`;
+
+    s.options.forEach((option, i) => {
+      html += `
+        <button
+          class="option ${
+            selected[current] === i ? "selected" : ""
+          }"
+          onclick="choose(${i})">
+          ${option[0]} ${option[1]}
+        </button>
+      `;
+    });
+
+    html += `</div>`;
+  }
+
+  if (s.type === "trick") {
+    html += `
+      <input
+        type="text"
+        id="answer"
+        maxlength="100"
+        placeholder="${s.placeholder}"
+        onkeydown="if(event.key==='Enter')go()">
+    `;
+  }
+
+  if (s.type === "meter") {
+    html += `
+      <input
+        type="range"
+        id="moodSlider"
+        min="0"
+        max="100"
+        value="${mood}"
+        oninput="
+          document.getElementById('meterValue').textContent =
+          this.value + '%';
+          mood = Number(this.value);
+        ">
+
+      <div class="meter-labels">
+        <span>Cloudy 🌧️</span>
+        <span id="meterValue">${mood}%</span>
+        <span>Sunny ☀️</span>
+      </div>
+    `;
+  }
+
+  if (s.type === "final") {
+    html += `
+      <div class="reveal">
+        You don't need to earn kindness.
+        You deserve it simply because you're you. 💗
+Or Aap hukam toh kr k dekhen ye kya poori duniya aapky liye bichaa doon🫶🏻
+      </div>
+    `;
+  }
+
+  html += `<div class="actions">`;
+
+  if (current > 0) {
+    html += `
+      <button class="btn secondary" onclick="back()">
+        ← Back
+      </button>
+    `;
+  }
+
+  html += `
+    <button class="btn" onclick="go()">
+      ${s.button || "Next surprise →"}
+    </button>
+  `;
+
+  html += `</div></div>`;
+
+  screen.innerHTML = html;
+}
+
+function confetti() {
+  const symbols = ["💗", "💕", "✨", "🌸", "💖", "♡"];
+
+  for (let i = 0; i < 35; i++) {
+    const el = document.createElement("span");
+
+    el.className = "confetti";
+    el.textContent =
+      symbols[Math.floor(Math.random() * symbols.length)];
+
+    el.style.left = Math.random() * 100 + "vw";
+    el.style.fontSize = (14 + Math.random() * 18) + "px";
+    el.style.animationDelay = Math.random() * 0.8 + "s";
+
+    document.body.appendChild(el);
+
+    setTimeout(() => el.remove(), 3500);
+  }
+}
+
+// Floating hearts and stars
+for (let i = 0; i < 18; i++) {
+  const el = document.createElement("span");
+
+  el.className = "floaty";
+  el.textContent = ["♡", "✦", "♥", "✧"][i % 4];
+  el.style.left = Math.random() * 100 + "%";
+  el.style.animationDuration = (10 + Math.random() * 15) + "s";
+  el.style.animationDelay = (-Math.random() * 20) + "s";
+  el.style.fontSize = (12 + Math.random() * 22) + "px";
+
+  document.getElementById("floaties").appendChild(el);
+}
+
+render();
+</script>
+
+</body>
+</html>
